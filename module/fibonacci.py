@@ -22,7 +22,7 @@ class Fibonacci:
 
         abnormal pattern
         >>> F.get_fibs_by_limit_number(-1)
-        this method needs number exceeds 2
+        this method needs number >= 2
         []
         """
         if int(limit_number) < 2:
