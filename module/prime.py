@@ -37,10 +37,8 @@ class Prime:
         ret = []
         prime = self._generate_prime()
         i = 0
-        while True:
+        while i < index:
             next = prime.next()
-            if i >= index:
-                break
             ret.append(next)
             i += 1
         return ret
