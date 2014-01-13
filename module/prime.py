@@ -109,6 +109,8 @@ class Prime:
         if num == limit_number:
             # in this case, limit_number is prime
             ret[limit_number] = 1
+        elif num != 1:
+            ret[num] = 1
         return ret
 
 if __name__ == "__main__":
