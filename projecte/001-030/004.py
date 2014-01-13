@@ -12,7 +12,7 @@ from palindrome import Palindrome
 
 def main():
     P = Palindrome()
-    ans = P.get_largest_palindrome_by_digit(3)
+    ans = P.get_largest_palindrome_product_of_two_numbers_by_keta(3)
     print ans
 
 if __name__ == '__main__':
