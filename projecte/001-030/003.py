@@ -12,8 +12,8 @@ from prime import Prime
 
 def main():
     P = Prime()
-    prime_factors_dict = P.get_prime_factors_by_limit_number(600851475143)
-    print(max(prime_factors_dict.keys()))
+    prime_factors = P.get_prime_factors_by_number(600851475143)
+    print(max(prime_factors.keys()))
 
 if __name__ == '__main__':
     main()

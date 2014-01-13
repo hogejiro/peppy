@@ -68,32 +68,35 @@ class Prime:
             next = prime.next()
         return ret
 
-    def get_prime_factors_by_limit_number(self, limit_number):
+    # 与えられた数を素因数分解し、連想配列の形で返す
+    # 2 以上の整数 a, b (a != b) と、素数 p, q (p != q) があるとして
+    # n = (a ** p) * (b ** q) のとき、get_prime_factors_by_number(n) = {a: p, b: q}
+    def get_prime_factors_by_number(self, number):
         """
         normal pattern
         >>> P = Prime()
-        >>> P.get_prime_factors_by_limit_number(2)
+        >>> P.get_prime_factors_by_number(2)
         {2: 1}
-        >>> P.get_prime_factors_by_limit_number(100)
+        >>> P.get_prime_factors_by_number(100)
         {2: 2, 5: 2}
 
         abnormal pattern
-        >>> P.get_prime_factors_by_limit_number(-1)
+        >>> P.get_prime_factors_by_number(-1)
         this method needs number >= 2
         {}
         """
-        if int(limit_number) < 2:
+        if int(number) < 2:
             print "this method needs number >= 2"
             return {}
         ret = {}
         import math
         # use math.sqrt for speedup
-        if limit_number >= 4:
-            limit_number_sqrt = math.sqrt(limit_number)
+        if number >= 4:
+            number_sqrt = math.sqrt(number)
         else:
-            limit_number_sqrt = 2
-        primes = self.get_primes_by_limit_number(limit_number_sqrt)
-        num = limit_number
+            number_sqrt = 2
+        primes = self.get_primes_by_limit_number(number_sqrt)
+        num = number
         for p in primes:
             if num == 1:
                 break
@@ -103,9 +106,9 @@ class Prime:
                     ret[p] = ret[p] + 1
                 else:
                     ret[p] = 1
-        if num == limit_number:
-            # in this case, limit_number is prime
-            ret[limit_number] = 1
+        if num == number:
+            # in this case, number is prime
+            ret[number] = 1
         elif num != 1:
             ret[num] = 1
         return ret

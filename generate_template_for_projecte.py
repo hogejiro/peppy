@@ -58,6 +58,7 @@ if __name__ == '__main__':
 # answer
 """.format(problem_name = problem_name, problem_number = problem_number)
 
-fh = open("%s/%s" % (dir, filename), 'w')
+import codecs
+fh = codecs.open("%s/%s" % (dir, filename), 'w', 'utf-8')
 fh.write(output)
 fh.close()
