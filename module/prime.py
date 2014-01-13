@@ -113,6 +113,34 @@ class Prime:
             ret[num] = 1
         return ret
 
+    # 与えられた数の約数の個数を求める
+    def get_count_of_divisors_by_number(self, number):
+        """
+        normal pattern
+        >>> P = Prime()
+        >>> P.get_count_of_divisors_by_number(2)
+        2
+        >>> P.get_count_of_divisors_by_number(100)
+        9
+
+        abnormal pattern
+        >>> P.get_count_of_divisors_by_number(-1)
+        this method needs number >= 1
+        0
+        """
+        if int(number) < 1:
+            print "this method needs number >= 1"
+            return 0
+        if int(number) == 1:
+            return 1
+        # n = (a ** p) * (b ** q) * (c ** r) のとき、
+        # n の約数は (p + 1) * (q + 1) * (r + 1) で求められる
+        factors = self.get_prime_factors_by_number(number)
+        patterns = factors.values()
+        patterns_considered_power_of_zero = map(lambda x: x + 1, patterns)
+        ret = reduce(lambda x, y: x * y, patterns_considered_power_of_zero)
+        return ret
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
