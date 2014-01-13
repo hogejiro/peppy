@@ -61,12 +61,11 @@ class Prime:
             print "this method needs number >= 2"
             return []
         ret = []
-        prime  = self._generate_prime()
-        while True:
-            next = prime.next()
-            if next > limit_number:
-                break
+        prime = self._generate_prime()
+        next = prime.next()
+        while next <= limit_number:
             ret.append(next)
+            next = prime.next()
         return ret
 
     def get_prime_factors_by_limit_number(self, limit_number):
