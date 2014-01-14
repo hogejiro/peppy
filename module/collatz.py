@@ -5,18 +5,36 @@ class Collatz:
         self._collatz_lengths_stored = {1:1}
         return
 
-    #collatz 列を計算する。
-    #すでに計算済みの数字が見つかった時点でやめる
+    """
+    def get_collatz_sequence(self, start_num):
+
+    collatz 列を計算する。
+    すでに計算済みの数字が見つかった時点でやめる
+
+    例えば 13 から開始した Collatz 列
+    collatz_sequence = [13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+    を返す。
+
+    もし 8 から開始する Collatz 列がすでに計算済みなら、
+    collatz_sequence = [13, 40, 20, 10, 5, 16, 8,]
+    までだけ計算してこれを返す。
+
+    注：この関数は stateful です。
+        つまり、引数が同じでも self._collatz_lengths_stored の状態によって返す結果が異なります。
+    """
     def get_collatz_sequence(self, start_num):
         """
-        例えば 13 から開始した Collatz 列
-        collatz_sequence = [13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
-        を返す。
+        >>> C = Collatz()
+        >>> C.get_collatz_sequence(13)
+        [13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
 
-        もし 8 から開始する Collatz 列がすでに計算済みなら、
-        collatz_sequence = [13, 40, 20, 10, 5, 16, 8,]
-        までだけ計算してこれを返す。
+        >>> C.get_collatz_sequence(-13)
+        Traceback (most recent call last):
+        ValueError: input has to be a positive int
         """
+        if isinstance(start_num, int) == False or start_num <= 0:
+            raise ValueError("input has to be a positive int")
+
         n = start_num
         collatz_sequence = [n, ]
         while True:
@@ -36,29 +54,62 @@ class Collatz:
         return collatz_sequence
 
     def get_next_collatz(self, i):
+        """
+        >>> C = Collatz()
+        >>> C.get_next_collatz(13)
+        40
+        >>> C.get_next_collatz(40)
+        20
+
+        >>> C.get_next_collatz(-40)
+        Traceback (most recent call last):
+        ValueError: input has to be a positive int
+        """
+        if isinstance(i, int) == False or i <= 0:
+            raise ValueError("input has to be a positive int")
+
         if i % 2 == 0:
             return i / 2
         return 3 * i + 1
 
+    """
+    例: 13 から開始した Collatz 列
+    collatz_sequence = [13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+    というリストを受け取り、
+    collatz_length = {
+        13: 10, # [13, 40, 20, 10, 5, 16, 8, 4, 2, 1] の長さ
+        40: 9,  #     [40, 20, 10, 5, 16, 8, 4, 2, 1] の長さ
+        20: 8,  #         [20, 10, 5, 16, 8, 4, 2, 1] の長さ
+        10: 7,  #             [10, 5, 16, 8, 4, 2, 1] の長さ
+         5: 6,  #                 [5, 16, 8, 4, 2, 1] の長さ
+        16: 5,  #                    [16, 8, 4, 2, 1] の長さ
+         8: 4,  #                        [8, 4, 2, 1] の長さ
+         4: 3,  #                           [4, 2, 1] の長さ
+         2: 2,  #                              [2, 1] の長さ
+         1: 1,  #                                 [1] の長さ
+    }
+    という辞書を返す。
+    """
     def store_collatz_lengths(self, collatz_sequence):
         """
-        例: 13 から開始した Collatz 列
-        collatz_sequence = [13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
-        というリストを受け取り、
-        collatz_length = {
-            13: 10, # [13, 40, 20, 10, 5, 16, 8, 4, 2, 1] の長さ
-            40: 9,  #     [40, 20, 10, 5, 16, 8, 4, 2, 1] の長さ
-            20: 8,  #         [20, 10, 5, 16, 8, 4, 2, 1] の長さ
-            10: 7,  #             [10, 5, 16, 8, 4, 2, 1] の長さ
-             5: 6,  #                 [5, 16, 8, 4, 2, 1] の長さ
-            16: 5,  #                    [16, 8, 4, 2, 1] の長さ
-             8: 4,  #                        [8, 4, 2, 1] の長さ
-             4: 3,  #                           [4, 2, 1] の長さ
-             2: 2,  #                              [2, 1] の長さ
-             1: 1,  #                                 [1] の長さ
-        }
-        という辞書を返す。
+        >>> C = Collatz()
+        >>> C.get_collatz_sequence(13)
+        [13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+
+        >>> collatz_from_8 = C.get_collatz_sequence(8)
+        >>> C.store_collatz_lengths(collatz_from_8)
+        {8: 4, 1: 1, 2: 2, 4: 3}
+
+        >>> C.get_collatz_sequence(13)
+        [13, 40, 20, 10, 5, 16, 8]
+
+        >>> C.store_collatz_lengths(0)
+        Traceback (most recent call last):
+        ValueError: input has to be a list of length 1 or longer
         """
+        if isinstance(collatz_sequence, list) == False or len(collatz_sequence) == 0:
+            raise ValueError("input has to be a list of length 1 or longer")
+
         end_num = collatz_sequence[-1]
         while len(collatz_sequence) > 0:
             # 異常系のチェック：最後の値が計算済みかどうか
@@ -84,5 +135,9 @@ class Collatz:
             # 正常系
             self._collatz_lengths_stored[start_num] = this_collatz_length
             collatz_sequence.pop(0)
-        return
+        return self._collatz_lengths_stored
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
 
