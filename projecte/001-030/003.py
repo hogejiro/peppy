@@ -12,7 +12,7 @@ from prime import Prime
 
 def main():
     P = Prime()
-    prime_factors = P.get_prime_factors_by_number(600851475143)
+    prime_factors = P.get_prime_factors(600851475143)
     print(max(prime_factors.keys()))
 
 if __name__ == '__main__':

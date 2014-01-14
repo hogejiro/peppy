@@ -12,7 +12,7 @@ from fibonacci import Fibonacci
 
 def main():
     F = Fibonacci()
-    ans = F.get_fibs_by_limit_number(4000000)
+    ans = F.get_fibs_by_upper_limit(4000000)
     print sum([l for l in ans if l % 2 == 0])
 
 if __name__ == '__main__':

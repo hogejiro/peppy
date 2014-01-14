@@ -12,7 +12,7 @@ from prime import Prime
 
 def main():
     P = Prime()
-    primes = P.get_primes_by_index(10001)
+    primes = P.get_n_primes(10001)
     print primes[-1]
 
 if __name__ == '__main__':

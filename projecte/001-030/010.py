@@ -12,7 +12,7 @@ from prime import Prime
 
 def main():
     P = Prime()
-    print sum(P.get_primes_by_limit_number(2000000))
+    print sum(P.get_primes_by_upper_limit(2000000))
 
 if __name__ == '__main__':
     main()
