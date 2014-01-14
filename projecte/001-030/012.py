@@ -23,7 +23,7 @@ def main():
     tn_iterator = get_triangle_number()
     while True:
         triangle_number = tn_iterator.next()
-        count_of_divisors = P.get_count_of_divisors_by_number(triangle_number)
+        count_of_divisors = P.get_count_of_divisors(triangle_number)
         if 500 < count_of_divisors:
             break
     print triangle_number
