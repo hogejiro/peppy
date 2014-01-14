@@ -7,6 +7,9 @@ class Lattice:
         return
 
     """
+    count_lattice_paths
+    * input 無し
+
     n行 m列の格子の、左上から右下へ至る経路の個数を数える関数
     2*3 の場合、
     lattice = [
@@ -27,6 +30,9 @@ class Lattice:
         return self._lattice_paths[self._n][self._m]
 
     """
+    initialize_lattice
+    * input 無し
+
     2*3 の場合、
     lattice = [
         [1,1,1,1], // 0行目

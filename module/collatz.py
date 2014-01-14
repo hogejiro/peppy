@@ -6,7 +6,8 @@ class Collatz:
         return
 
     """
-    def get_collatz_sequence(self, start_num):
+    get_collatz_sequence
+    * input: start_num
 
     collatz 列を計算する。
     すでに計算済みの数字が見つかった時点でやめる
@@ -73,6 +74,9 @@ class Collatz:
         return 3 * i + 1
 
     """
+    store_collatz_lengths
+    * input collatz_sequence
+
     例: 13 から開始した Collatz 列
     collatz_sequence = [13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
     というリストを受け取り、
