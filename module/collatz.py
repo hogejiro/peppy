@@ -47,24 +47,19 @@ class Collatz:
             if n in self._collatz_lengths_stored:
                 break # 最後が1で終わっていなくてもここで終了
 
-            n = self.get_next_collatz(n)
+            n = self.__get_next_collatz(n)
             # 末尾に要素を追加
             collatz_sequence.append(n)
             #print collatz_sequence
 
         return collatz_sequence
 
-    def get_next_collatz(self, i):
+    def __get_next_collatz(self, i):
         """
         >>> C = Collatz()
-        >>> C.get_next_collatz(13)
-        40
-        >>> C.get_next_collatz(40)
-        20
-
-        >>> C.get_next_collatz(-40)
+        >>> C.__get_next_collatz(13)
         Traceback (most recent call last):
-        ValueError: input has to be a positive int
+        AttributeError: Collatz instance has no attribute '__get_next_collatz'
         """
         if isinstance(i, int) == False or i <= 0:
             raise ValueError("input has to be a positive int")

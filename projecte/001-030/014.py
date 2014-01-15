@@ -14,7 +14,7 @@ def main():
     max = 1000000 # one million
 
     C = Collatz()
-    for i in range(1, max + 1):
+    for i in range(1, max): # 1 <= i < max
         this_collatz_seq = C.get_collatz_sequence(i)
         C.store_collatz_lengths(this_collatz_seq)
 
